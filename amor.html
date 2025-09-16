@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="es"><head>
+<html lang="es">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Página de amor - [Nombres]</title>
@@ -32,16 +33,16 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
 <div class="container">
   <div class="heart"></div>
   <div class="header">
-    <div class="photo" id="photoContainer"><img id="photo" src="blob:null/8998a404-b136-4866-8b4a-cf180836c6d0" alt="Foto pareja"></div>
+    <div class="photo" id="photoContainer"><img id="photo" src="https://via.placeholder.com/300x300.png?text=Tu+Foto" alt="Foto pareja"></div>
     <div class="title">
-      <h1 class="names" id="names">Quiero empezar agradeciéndote por  estar compartiendo momentos bonitos a mi lado y con mi familia 💗 eres muy importante para mi , espero que esto te guste un poco al menos y recordar que empezare a hacerte cosas asi , que esto lo que vez es para recordar eso, mejorar contigo a tu lado , verte crecer profesionalmente   y estar en tus mejores logros como también en su caídas y darte los alientos que vas a necesitar para volverte a ponerte de pie . En verdad estoy muy orgulloso de todo lo que estas logrando aunque a veces me guste molestarte con tu carrera solo es broma . Perdón por las veces que te he echo enojar pero en verdad quiero demostrarte que solo eres tu y que siempre será así 💗 espero que tu sentimiento sea mutuo igual y que sigamos para adelante . TE AMO MUCHO MUCHO MUCHISIMO 💗💗💗💗💗</h1>
+      <h1 class="names" id="names">Carlos & Ana</h1>
       <div class="subtitle" id="subtitle">Juntos por siempre 💕</div>
-      <div class="counter" id="timeTogether">2 años, 3 meses, 29 días</div>
+      <div class="counter" id="timeTogether">0 años, 0 meses, 0 días · <span id="totalDays">0</span> días totales</div>
       <div class="controls">
         <label class="btn small" for="photoInput">Subir foto</label>
         <input type="file" id="photoInput" accept="image/*" style="display:none">
         <button class="btn small" id="editBtn">Editar texto</button>
-        <button class="btn small" id="playBtn">Pausar música</button>
+        <button class="btn small" id="playBtn">Reproducir música</button>
         <input type="file" id="audioInput" accept="audio/*" style="display:none">
       </div>
     </div>
@@ -52,13 +53,13 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
     <input class="input" type="date" id="startDate" value="2023-01-01">
     <button class="btn small" id="setDateBtn">Actualizar</button>
     <div style="flex:1"></div>
-    <div class="note">Total: <span id="totalDaysInline">851</span> días</div>
+    <div class="note">Total: <span id="totalDaysInline">0</span> días</div>
   </div>
 
   <div class="form-row" style="margin-top:12px;">
     <input class="input" type="text" id="linkInput" placeholder="Enlace para QR (ej: https://...)" style="flex:1">
     <button class="btn small" id="genQrBtn">Generar QR</button>
-    <img id="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&amp;data=https%2F%2Fdiana%3C3.com" alt="QR" style="width: 90px; height: 90px; border-radius: 8px; border: 1px solid rgb(238, 238, 238); display: inline-block;">
+    <img id="qrImg" src="" alt="QR" style="width:90px;height:90px;border-radius:8px;border:1px solid #eee;display:none">
   </div>
 
   <div class="footer">
@@ -68,7 +69,7 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
       <button class="btn small" id="resetBtn">Restablecer valores</button>
     </div>
   </div>
-  <audio id="bgAudio" loop="" src="blob:null/06ab3f90-5a84-4e0d-bd6a-60a5323d3de0"></audio>
+  <audio id="bgAudio" loop></audio>
 </div>
 
 <script>
@@ -210,6 +211,5 @@ document.getElementById('resetBtn').addEventListener('click', ()=>{
 photoContainer.addEventListener('click', ()=> photoInput.click());
 
 </script>
-
-
-</body></html>
+</body>
+</html>
