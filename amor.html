@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Página de amor - [Nombres]</title>
+<style>
+:root{--bg1:#fff0f5;--pink:#ff86b6;--accent:#ff4567;}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(180deg,#fffafc,#ffeef7); color:#333;}
+.container{width:min(900px,95%); background:rgba(255,255,255,0.95); border-radius:16px; padding:20px; box-shadow:0 8px 30px rgba(0,0,0,0.12); position:relative; overflow:hidden;}
+.header{display:flex; gap:16px; align-items:center;}
+.photo{width:140px;height:140px;border-radius:12px;overflow:hidden;flex-shrink:0;border:4px solid rgba(255,200,220,0.9); background:#fff; cursor:pointer}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.title{flex:1}
+.names{font-size:1.6rem;font-weight:700;color:var(--accent); margin:0}
+.subtitle{margin:4px 0 0;color:#666}
+.counter{margin-top:14px; font-size:1.1rem; font-weight:600}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{background:linear-gradient(90deg,var(--pink),var(--accent)); color:white;border:none;padding:8px 12px;border-radius:10px;cursor:pointer;box-shadow:0 6px 14px rgba(255,100,140,0.18)}
+.small{padding:6px 8px;font-size:0.9rem;border-radius:8px}
+.input{padding:8px;border-radius:8px;border:1px solid #e6d7df;background:#fff}
+.message{margin-top:18px;padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fff0f7);border:1px solid rgba(255,200,220,0.5)}
+.form-row{display:flex;gap:8px;align-items:center;margin-top:10px}
+.qr{position:absolute; right:18px; bottom:18px;text-align:center}
+.heart{position:absolute; right:-60px; top:-60px; width:250px;height:250px; background:radial-gradient(circle at 30% 30%, rgba(255,200,220,0.6), transparent 20%), radial-gradient(circle at 70% 70%, rgba(255,230,240,0.6), transparent 20%); transform:rotate(25deg); opacity:0.25; border-radius:50%}
+.footer{margin-top:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.note{font-size:0.85rem;color:#777}
+@media (max-width:560px){.header{flex-direction:column;align-items:flex-start}.photo{width:120px;height:120px}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="heart"></div>
+  <div class="header">
+    <div class="photo" id="photoContainer"><img id="photo" src="blob:null/8998a404-b136-4866-8b4a-cf180836c6d0" alt="Foto pareja"></div>
+    <div class="title">
+      <h1 class="names" id="names">Quiero empezar agradeciéndote por  estar compartiendo momentos bonitos a mi lado y con mi familia 💗 eres muy importante para mi , espero que esto te guste un poco al menos y recordar que empezare a hacerte cosas asi , que esto lo que vez es para recordar eso, mejorar contigo a tu lado , verte crecer profesionalmente   y estar en tus mejores logros como también en su caídas y darte los alientos que vas a necesitar para volverte a ponerte de pie . En verdad estoy muy orgulloso de todo lo que estas logrando aunque a veces me guste molestarte con tu carrera solo es broma . Perdón por las veces que te he echo enojar pero en verdad quiero demostrarte que solo eres tu y que siempre será así 💗 espero que tu sentimiento sea mutuo igual y que sigamos para adelante . TE AMO MUCHO MUCHO MUCHISIMO 💗💗💗💗💗</h1>
+      <div class="subtitle" id="subtitle">Juntos por siempre 💕</div>
+      <div class="counter" id="timeTogether">2 años, 3 meses, 29 días</div>
+      <div class="controls">
+        <label class="btn small" for="photoInput">Subir foto</label>
+        <input type="file" id="photoInput" accept="image/*" style="display:none">
+        <button class="btn small" id="editBtn">Editar texto</button>
+        <button class="btn small" id="playBtn">Pausar música</button>
+        <input type="file" id="audioInput" accept="audio/*" style="display:none">
+      </div>
+    </div>
+  </div>
+  <div class="message" id="message">Mi amor, hoy celebro cada recuerdo contigo... (edita este mensaje)</div>
+  <div class="form-row">
+    <label for="startDate">Fecha juntos:</label>
+    <input class="input" type="date" id="startDate" value="2023-01-01">
+    <button class="btn small" id="setDateBtn">Actualizar</button>
+    <div style="flex:1"></div>
+    <div class="note">Total: <span id="totalDaysInline">851</span> días</div>
+  </div>
+
+  <div class="form-row" style="margin-top:12px;">
+    <input class="input" type="text" id="linkInput" placeholder="Enlace para QR (ej: https://...)" style="flex:1">
+    <button class="btn small" id="genQrBtn">Generar QR</button>
+    <img id="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&amp;data=https%2F%2Fdiana%3C3.com" alt="QR" style="width: 90px; height: 90px; border-radius: 8px; border: 1px solid rgb(238, 238, 238); display: inline-block;">
+  </div>
+
+  <div class="footer">
+    <div class="note">Consejo: guarda este archivo como <strong>amor.html</strong> y ábrelo en tu navegador.</div>
+    <div>
+      <button class="btn small" id="downloadBtn">Descargar como HTML</button>
+      <button class="btn small" id="resetBtn">Restablecer valores</button>
+    </div>
+  </div>
+  <audio id="bgAudio" loop="" src="blob:null/06ab3f90-5a84-4e0d-bd6a-60a5323d3de0"></audio>
+</div>
+
+<script>
+// === CONFIG: puedes poner aquí la fecha inicial y los nombres por defecto ===
+let namesEl = document.getElementById('names');
+let subtitleEl = document.getElementById('subtitle');
+let messageEl = document.getElementById('message');
+let timeEl = document.getElementById('timeTogether');
+let totalDaysEl = document.getElementById('totalDays');
+let totalDaysInline = document.getElementById('totalDaysInline');
+
+const startDateInput = document.getElementById('startDate');
+const photoInput = document.getElementById('photoInput');
+const photoImg = document.getElementById('photo');
+const photoContainer = document.getElementById('photoContainer');
+const playBtn = document.getElementById('playBtn');
+const audioInput = document.getElementById('audioInput');
+const bgAudio = document.getElementById('bgAudio');
+const linkInput = document.getElementById('linkInput');
+const qrImg = document.getElementById('qrImg');
+
+let startDate = new Date(startDateInput.value);
+
+// Helpers
+function daysBetween(a,b){ return Math.floor((b-a)/(1000*60*60*24)); }
+
+function updateTime(){
+  const now = new Date();
+  let y = now.getFullYear() - startDate.getFullYear();
+  let m = now.getMonth() - startDate.getMonth();
+  let d = now.getDate() - startDate.getDate();
+
+  if (d < 0) {
+    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0); // last day of prev month
+    d += prevMonth.getDate();
+    m -= 1;
+  }
+  if (m < 0) {
+    m += 12;
+    y -= 1;
+  }
+  const total = daysBetween(startDate, now);
+  timeEl.textContent = `${y} años, ${m} meses, ${d} días`;
+  totalDaysEl.textContent = total;
+  totalDaysInline.textContent = total;
+}
+
+// Update every second (for live feel)
+setInterval(updateTime, 1000);
+updateTime();
+
+// Photo upload & preview
+photoInput.addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  photoImg.src = url;
+});
+
+// Audio upload & play
+playBtn.addEventListener('click', ()=>{
+  if (!bgAudio.src) {
+    audioInput.click();
+    return;
+  }
+  if (bgAudio.paused) {
+    bgAudio.play();
+    playBtn.textContent = 'Pausar música';
+  } else {
+    bgAudio.pause();
+    playBtn.textContent = 'Reproducir música';
+  }
+});
+
+audioInput.addEventListener('change',(e)=>{
+  const f = e.target.files[0];
+  if (!f) return;
+  const url = URL.createObjectURL(f);
+  bgAudio.src = url;
+  bgAudio.play();
+  playBtn.textContent = 'Pausar música';
+});
+
+// Edit names & message
+document.getElementById('editBtn').addEventListener('click', ()=>{
+  const name = prompt('Nombres (ej: Carlos & Ana):', namesEl.textContent);
+  if (name !== null) namesEl.textContent = name;
+  const sub = prompt('Subtítulo (ej: Juntos por siempre):', subtitleEl.textContent);
+  if (sub !== null) subtitleEl.textContent = sub;
+  const msg = prompt('Mensaje romántico:', messageEl.textContent);
+  if (msg !== null) messageEl.textContent = msg;
+});
+
+// Set date button
+document.getElementById('setDateBtn').addEventListener('click', ()=>{
+  const v = startDateInput.value;
+  if (!v) return alert('Selecciona una fecha');
+  startDate = new Date(v);
+  updateTime();
+});
+
+// Generate QR using qrserver API
+document.getElementById('genQrBtn').addEventListener('click', ()=>{
+  const data = linkInput.value.trim() || window.location.href;
+  const src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(data);
+  qrImg.src = src;
+  qrImg.style.display = 'inline-block';
+});
+
+// Download as HTML (simple)
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const html = '<!doctype html>\n' + document.documentElement.outerHTML;
+  const blob = new Blob([html], {type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'amor.html';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+// Reset
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  if (!confirm('Restablecer a valores predeterminados?')) return;
+  photoImg.src = 'https://via.placeholder.com/300x300.png?text=Tu+Foto';
+  namesEl.textContent = 'Carlos & Ana';
+  subtitleEl.textContent = 'Juntos por siempre 💕';
+  messageEl.textContent = 'Mi amor, hoy celebro cada recuerdo contigo... (edita este mensaje)';
+  startDateInput.value = '2023-01-01';
+  startDate = new Date(startDateInput.value);
+  bgAudio.pause(); bgAudio.src='';
+  playBtn.textContent = 'Reproducir música';
+  qrImg.style.display = 'none';
+  linkInput.value = '';
+  updateTime();
+});
+
+// Allow clicking photo to change
+photoContainer.addEventListener('click', ()=> photoInput.click());
+
+</script>
+
+
+</body></html>
